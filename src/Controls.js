@@ -9,51 +9,91 @@ import {
     Button,
     TextField,
 } from '@mui/material';
-import { Select, Option } from '@mui/base';
+import { Select, Option, Input } from '@mui/base';
 import { DataGridPro } from '@mui/x-data-grid-pro';
 import { GridToolbar } from '@mui/x-data-grid';
 import Details from './Details.js';
+import * as Constants from './constants.js';
 
 function Controls() {
     const [buttonDisabled, setButtonDisabled] = React.useState(true);
     const [name, setName] = React.useState('');
+    const [length, setLength] = React.useState('');
     const [results, setResults] = React.useState([]);
-    const shapeOptions = [
-        "ellipsoidal",
-        "fusiform",
-        "globose",
-        "ovoid",
-    ];
-    const columns = [
-        {field: 'GDCC_ID', headerName: 'Accession Number', width: 10},
-        {field: 'Family', headerName: 'Family', width: 125},
-        {field: 'Genus', headerName: 'Genus', width: 125},
-        {field: 'Species', headerName: 'Species', width: 125},
-        {field: 'Botanical Author', headerName: 'Botanical Author', width: 125},
-        {field: 'Common Name', headerName: 'Common Name',width: 125},
-        {field: 'image', headerName: 'Image', width: 200, renderCell: (params) => <img src={"images/icons/" + params.row.GDCC_ID} />},
-        {field: 'Details', headerName: 'Details', width: 200, renderCell: (params) => <Link to={"/details/" + params.row.GDCC_ID}> Details {params.row.ID} </Link>},
-    ];
+    
+    let handleSubmit= function(event) {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
 
-    let handleButtonPress = function() {
         let results = Search(name);
         setResults(results);
     }
 
+    //search for:
+    //Scientific Name (String to search for)
+    //Geographic Range (Native) (dropdown)
+    //Geographic Range (Current) (dropdown)
+    //Seed length (float)
     return ( <>
+        <form onSubmit={handleSubmit}>
+        <div className="container">
         <div>
-        <TextField
-          id="outlined-controlled"
-          label="String to search for"
-          value={name}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+        <Input placeholder="Scientific Name"
+            name="name"
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                   setName(event.target.value);
-                }}
+            }}
         />
-
-        <Select placeholder="Select shape">
-          {shapeOptions.map((item) => (
+        </div>
+        <div>
+        <Input placeholder="Seed length…"
+            endAdornment="mm"
+            name="length"
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  setLength(event.target.value);
+            }}
+        />
+        </div>
+        <div>
+        <Select placeholder="Native Geographic Region" name="native-region">
+          {Constants.regionOptions.map((item) => (
                   <Option key={item} value={item} label={item}>
+                    {item}
+                  </Option>
+                ))}
+        </Select>
+        </div>
+        <div>
+        <Select placeholder="Current Geographic Region" name="current-region">
+          {Constants.regionOptions.map((item) => (
+                  <Option key={item} value={item} label={item}>
+                    {item}
+                  </Option>
+                ))}
+        </Select>
+        </div>
+        <div>
+        <Select placeholder="Select Shape" name="shape">
+          {Constants.shapeOptions.map((item) => (
+                  <Option key={item} value={item} label={item}>
+                       {item}
+                    <img
+                      loading="lazy"
+                      width={50}
+                      height={50}
+                      srcSet={`images/dropdown/${item}`}
+                      src={`images/dropdown/${item}`}
+                      alt={`Image of ${item}`}
+                    />
+                  </Option>
+                ))}
+        </Select>
+        </div>
+        <div>
+        <Select placeholder="Select Texture" name="texture">
+          {Constants.textureOptions.map((item) => (
+                  <Option key={item} value={item} label={item}>
+                    {item}
                     <img
                       loading="lazy"
                       width={20}
@@ -62,25 +102,25 @@ function Controls() {
                       src={`images/dropdown/${item}`}
                       alt={`Image of ${item}`}
                     />
-                    {item}
                   </Option>
                 ))}
         </Select>
-
+        </div>
         < Button variant = "contained"
             sx = {
                 { 'backgroundColor': '#f50057' }
             }
-            onClick = { handleButtonPress }
-        >
+            type="submit" >
             Search
         </Button> 
         </div>
+        </form>
+
         { results.length > 0 ?
         <>
             <DataGridPro
           rows={results}
-          columns={columns}
+          columns={Constants.columns}
           initialState={{
                   pagination: {
                             paginationModel: { page: 0, pageSize: 20 },
