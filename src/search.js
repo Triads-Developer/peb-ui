@@ -6,9 +6,9 @@ export default function Search(params) {
         keys : [
             "Genus",
             "Species",
-            "Common Name"
+            "Family",
         ],
-        threshold : 0.2
+        threshold : 0.1
     };
 
     let fuse = new Fuse(data, options);
