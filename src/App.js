@@ -1,8 +1,8 @@
-import React from 'react';
-import './App.css';
-import Controls from './Controls.js';
-import Details from './Details.js';
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import React from 'react'
+import './App.css'
+import Controls from './Controls.js'
+import Details from './Details.js'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 /*
  * This app will contain two components, a toggle and a button
@@ -15,15 +15,15 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
  */
 
 function App() {
-    return ( 
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Controls />} ></Route>
-                <Route path="/details/:id" element={<Details />} ></Route>
-                <Route path="*" element={<Navigate to="/" />} ></Route>
-            </Routes>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Controls />}></Route>
+        <Route path='/details/:id' element={<Details />}></Route>
+        <Route path='*' element={<Navigate to='/' />}></Route>
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
