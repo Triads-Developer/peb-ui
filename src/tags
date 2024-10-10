@@ -1,0 +1,51 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+App	App.js	/^function App() {$/;"	F
+Constants	Controls.js	/^import * as Constants from '.\/constants.js'$/;"	I
+Controls	Controls.js	/^function Controls() {$/;"	F
+Details	Details.js	/^function Details() {$/;"	F
+Header	Header.js	/^function Header() {$/;"	F
+Search	Controls.js	/^            Search$/;"	V
+Search	search.js	/^export default function Search(params) {$/;"	E
+accession	Details.js	/^  const accession = data.find((element) => (element.ID = id.id))$/;"	F
+autoHeight	Controls.js	/^            autoHeight$/;"	V
+columns	constants.js	/^export const columns = [$/;"	E
+currentRegion	Controls.js	/^  const [currentRegion, setCurrentRegion] = React.useState([])$/;"	V
+disableColumnFilter	Controls.js	/^            disableColumnFilter$/;"	V
+formData	Controls.js	/^    const formData = new FormData(event.currentTarget)$/;"	V
+fuse	search.js	/^  let fuse = new Fuse(data, options)$/;"	V
+handleCurrentRegionChange	Controls.js	/^  const handleCurrentRegionChange = (event) => {$/;"	F
+handleNativeRegionChange	Controls.js	/^  const handleNativeRegionChange = (event) => {$/;"	F
+handleShapeChange	Controls.js	/^  const handleShapeChange = (event) => {$/;"	F
+handleSubmit	Controls.js	/^  let handleSubmit = function (event) {$/;"	F
+handleTextureChange	Controls.js	/^  const handleTextureChange = (event) => {$/;"	F
+headerFilters	Controls.js	/^            headerFilters$/;"	V
+keys	search.js	/^    keys: ['Genus', 'Species', 'Family'],$/;"	P
+length	Controls.js	/^  const [length, setLength] = React.useState('')$/;"	V
+multiple	Controls.js	/^                  multiple$/;"	V
+name	Controls.js	/^  const [name, setName] = React.useState('')$/;"	V
+nativeRegion	Controls.js	/^  const [nativeRegion, setNativeRegion] = React.useState([])$/;"	V
+options	search.js	/^  let options = {$/;"	O
+pagination	Controls.js	/^              pagination: { paginationModel: { page: 0, pageSize: 20 } }$/;"	P
+pagination	Controls.js	/^            pagination$/;"	V
+regionOptions	constants.js	/^export const regionOptions = ['Canada', 'North America', 'Africa', 'Europe']$/;"	E
+renderCell	constants.js	/^    renderCell: (params) => <Link to={'\/details\/' + params.row.GDCC_ID}> Details {params.row.ID} <\/Link>$/;"	M
+reportWebVitals	reportWebVitals.js	/^const reportWebVitals = (onPerfEntry) => {$/;"	F
+results	Controls.js	/^  const [results, setResults] = React.useState([])$/;"	V
+setCurrentRegion	Controls.js	/^  const [currentRegion, setCurrentRegion] = React.useState([])$/;"	V
+setLength	Controls.js	/^  const [length, setLength] = React.useState('')$/;"	V
+setName	Controls.js	/^  const [name, setName] = React.useState('')$/;"	V
+setNativeRegion	Controls.js	/^  const [nativeRegion, setNativeRegion] = React.useState([])$/;"	V
+setResults	Controls.js	/^  const [results, setResults] = React.useState([])$/;"	V
+setShape	Controls.js	/^  const [shape, setShape] = React.useState([])$/;"	V
+setTexture	Controls.js	/^  const [texture, setTexture] = React.useState([])$/;"	V
+shape	Controls.js	/^  const [shape, setShape] = React.useState([])$/;"	V
+shapeOptions	constants.js	/^export const shapeOptions = ['ellipsoidal', 'fusiform', 'globose', 'ovoid']$/;"	E
+texture	Controls.js	/^  const [texture, setTexture] = React.useState([])$/;"	V
+textureOptions	constants.js	/^export const textureOptions = ['smooth', 'rough', 'slimy']$/;"	E
+toolbar	Controls.js	/^              toolbar: GridToolbar$/;"	P
+width	constants.js	/^    width: 200,$/;"	P
