@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Zoom from 'react-medium-image-zoom'
+import './Zoom.css'
 
 export const shapeOptions = ['ellipsoidal', 'fusiform', 'globose', 'ovoid']
 
@@ -14,7 +16,17 @@ export const columns = [
   { field: 'Species', headerName: 'Species', width: 125 },
   { field: 'Botanical Author', headerName: 'Botanical Author', width: 125 },
   { field: 'Common Name', headerName: 'Common Name', width: 125 },
-  { field: 'image', headerName: 'Image', width: 200, renderCell: (params) => <img src={'images/icons/' + params.row.GDCC_ID} /> },
+  {
+    field: 'image',
+    headerName: 'Image',
+    width: 200,
+    renderCell: (params) => (
+      <Zoom>
+        {' '}
+        <img className='img-icon' src={'images/icons/' + params.row.GDCC_ID} />{' '}
+      </Zoom>
+    )
+  },
   {
     field: 'Details',
     headerName: 'Details',
