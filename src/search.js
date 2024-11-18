@@ -9,9 +9,17 @@ export default function Search(params) {
 
   let fuse = new Fuse(data, options)
 
-  return fuse.search(params).map((result) => ({
-    ...result.item,
-    image: '/image',
-    id: crypto.randomUUID()
-  }))
+  if (!params) {
+    return data.map((item) => ({
+      ...item,
+      image: '/image',
+      id: crypto.randomUUID()
+    }))
+  } else {
+    return fuse.search(params).map((result) => ({
+      ...result.item,
+      image: '/image',
+      id: crypto.randomUUID()
+    }))
+  }
 }
