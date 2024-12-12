@@ -21,14 +21,15 @@ function ResultsGrid({ results }) {
         {results.length > 0 ? (
           <>
             <DataGridPro
+              sx={{ width: '100%' }}
               rows={results}
               columns={Constants.columns}
               initialState={{
                 pagination: { paginationModel: { page: 0, pageSize: 20 } }
               }}
               pagination
+              rowHeight={125}
               pageSizeOptions={[5, 10, 20]}
-              autoHeight
               disableColumnFilter
               headerFilters
               slots={{

@@ -7,6 +7,7 @@
 
 .MuiDataGrid-row {
   background-color: white;
+  min-height: 125px;
 }
 
 .MuiPopover-paper {
@@ -112,8 +113,7 @@
 .img-icon {
     padding: 5px;
     justify-content: flex-end;
-    max-height: 75px;
-    max-width: 75px;
-
+    max-height: 125px;
+    max-width: 125px;
  } 
 

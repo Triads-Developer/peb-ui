@@ -10,10 +10,10 @@ export const textureOptions = ['smooth', 'rough', 'slimy']
 export const regionOptions = ['Canada', 'North America', 'Africa', 'Europe']
 
 export const columns = [
-  { field: 'GDCC_ID', headerName: 'Accession Number', width: 10 },
-  { field: 'Family', headerName: 'Family', width: 125 },
-  { field: 'Genus', headerName: 'Genus', width: 125 },
-  { field: 'Species', headerName: 'Species', width: 125 },
+  { field: 'GDCC_ID', headerName: 'Accession Number', width: 150 },
+  { field: 'Family', headerName: 'Family', width: 250 },
+  { field: 'Genus', headerName: 'Genus', width: 250 },
+  { field: 'Species', headerName: 'Species', width: 200 },
   { field: 'Botanical Author', headerName: 'Botanical Author', width: 125 },
   { field: 'Common Name', headerName: 'Common Name', width: 125 },
   {
