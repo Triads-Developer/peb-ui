@@ -1,13 +1,15 @@
 import React from 'react'
 import Search from './search.js'
-
 import Tutorial from './Tutorial.js'
 import ResultsGrid from './ResultsGrid.js'
 import SearchFields from './SearchFields.js'
+import Details from './Details.js'
 
 function Controls() {
   const [showIntro, setShowIntro] = React.useState(true)
   const [results, setResults] = React.useState([])
+  const [showDetails, setShowDetails] = React.useState(false)
+  const [selectedAccession, setSelectedAccession] = React.useState(0)
 
   const handleSearch = function (name) {
     let results = Search(name)
@@ -18,6 +20,18 @@ function Controls() {
     if (event) {
       setShowIntro(false)
     }
+  }
+
+  const handleDetailsClick = (event) => {
+    if (showDetails) {
+      setShowDetails(false)
+    } else {
+      setShowDetails(true)
+    }
+
+    console.log(showDetails)
+    setSelectedAccession(event.currentTarget.id)
+    console.log(event.currentTarget.id)
   }
 
   const clearResults = () => {
@@ -34,8 +48,9 @@ function Controls() {
       <div className='App'>
         <header className='App-header'>
           {showIntro && <Tutorial handleDismissTutorial={handleDismissTutorial} />}
-          {!showIntro && <SearchFields handleSearch={handleSearch} clearResults={clearResults} />}
-          {!showIntro && <ResultsGrid results={results} />}
+          {!showIntro && !showDetails && <SearchFields handleSearch={handleSearch} clearResults={clearResults} />}
+          {!showIntro && !showDetails && <ResultsGrid results={results} handleDetailsClick={handleDetailsClick} />}
+          {!showIntro && showDetails && <Details accesssionId={selectedAccession} handleReturnClick={handleDetailsClick} />}
         </header>
       </div>
     </>

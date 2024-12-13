@@ -1,59 +1,53 @@
 import { React, useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import data from './data/collection.json'
 import Zoom from 'react-medium-image-zoom'
 import Box from '@mui/material/Box'
+import DetailsSection from './DetailsSection.js'
+import PropTypes from 'prop-types'
+import collection from './data/collection.json'
+
 import './App.css'
 import './Zoom.css'
 
-function Details() {
+function Details({ accessionId, handleReturnClick }) {
   const [images, setImages] = useState([])
-
-  const id = useParams()
-
-  const accession = data.find((element) => (element.ID = id.id))
-
-  console.log(id.id)
+  const [accession, setAccession] = useState({})
 
   useEffect(() => {
-    fetch('/images/' + id.id)
+    fetch('/images/' + accessionId)
       .then((response) => response.json())
       .then((data) => setImages(data))
-  }, [id])
 
-  console.log(images)
+    setAccession(collection.find((element) => element.GDCC_ID == accessionId))
+  }, [accessionId, accession])
 
   return (
     <Box sx={{ mx: 10 }}>
-      <Box>
-        <h1>Accession Details for Accession {id.id}!</h1>
-      </Box>
+      <DetailsSection title='Accession Details' details='Accession Details for Accession' />
+      <DetailsSection title='Genus' details={accession.Genus} />
+      <DetailsSection title='Species' details={accession.Species} />
 
-      <Box>
-        <h1>Number of images {images.length}!</h1>
-      </Box>
-      <Box>
-        <p>Genus: {accession.Genus}</p>
-      </Box>
-      <Box>
-        <p>Species: {accession.Species}</p>
-      </Box>
       <Box>
         <p>Botanical Author: {accession['Botanical author']}</p>
       </Box>
-      <Box>
-        <span> Images </span>
+
+      <DetailsSection title='Images' details='Images'>
         {images.map((image) => (
           <Zoom key={image}>
-            <img className='img-icon' src={'/images/' + id.id + '/' + image} />{' '}
+            <img className='img-icon' src={'/images/' + accessionId + '/' + image} />{' '}
           </Zoom>
         ))}
-      </Box>
+      </DetailsSection>
+
       <Box>
-        <Link to='/'> Navigate back home </Link>
+        <button onClick={handleReturnClick}>Return to Search</button>
       </Box>
     </Box>
   )
+}
+
+Details.propTypes = {
+  accessionId: PropTypes.string,
+  handleReturnClick: PropTypes.func
 }
 
 export default Details
