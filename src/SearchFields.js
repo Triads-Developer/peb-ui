@@ -61,12 +61,13 @@ function SearchFields({ handleSearch, clearResults }) {
   const handleSubmit = function (event) {
     event.preventDefault()
 
+    setHideFilters(!hideFilters)
     handleSearch(name)
   }
 
   return (
     <>
-      <div className='search-fields'>
+      <div className={hideFilters ? 'search-fields hidden-filter-search-fields' : 'search-fields'}>
         <form onSubmit={handleSubmit}>
           <div className='container'>
             <Box className={hideFilters ? 'hidden' : ''} sx={{ m: 3, marginTop: '25px' }}>
@@ -201,23 +202,25 @@ function SearchFields({ handleSearch, clearResults }) {
                 </Box>
               </div>
             </Box>
-            <Box className='filter-buttons'>
-              <Button
-                variant='contained'
-                sx={{
-                  backgroundColor: '#f50057',
-                  width: '50px',
-                  height: '50px'
-                }}
-                type='submit'
-              >
-                Search
-              </Button>
-              <Button variant='text' sx={{ margin: '20px' }} onClick={resetFilters}>
-                Reset Filters
-              </Button>
+            <Box className={hideFilters ? 'hidden-filter-search-button-box' : ''}>
+              <span className={hideFilters ? 'hidden' : ''}>
+                <Button
+                  variant='contained'
+                  sx={{
+                    backgroundColor: '#f50057',
+                    width: '50px',
+                    height: '50px'
+                  }}
+                  type='submit'
+                >
+                  Search
+                </Button>
+                <Button variant='text' className={hideFilters ? 'hidden' : ''} sx={{ margin: '20px' }} onClick={resetFilters}>
+                  Reset Filters
+                </Button>
+              </span>
 
-              <Button variant='text' sx={{ margin: '20px' }} onClick={handleHideFilterClick}>
+              <Button variant='text' onClick={handleHideFilterClick}>
                 {hideFilters ? 'Show Filters' : 'Hide Filters'}
               </Button>
             </Box>

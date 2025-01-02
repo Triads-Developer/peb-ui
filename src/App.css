@@ -52,8 +52,10 @@
   height: 140px;
 }
 
-.filter-buttons {
-  padding: 1em;
+.hidden-filter-search-button-box {
+  transform: rotate(90deg);
+  width: 200px;
+  padding-top: 174px;
 }
 
 .hidden {
@@ -97,6 +99,10 @@
   border-radius:  10px;
   max-width: 70%;
   padding: 1em;
+}
+
+.hidden-filter-search-fields {
+  width: 1%;
 }
 
 .input-box {

@@ -9,7 +9,7 @@ function Controls() {
   const [showIntro, setShowIntro] = React.useState(true)
   const [results, setResults] = React.useState([])
   const [showDetails, setShowDetails] = React.useState(false)
-  const [selectedAccession, setSelectedAccession] = React.useState(0)
+  const [selectedAccessionId, setSelectedAccessionId] = React.useState(0)
 
   const handleSearch = function (name) {
     let results = Search(name)
@@ -23,15 +23,14 @@ function Controls() {
   }
 
   const handleDetailsClick = (event) => {
-    if (showDetails) {
-      setShowDetails(false)
-    } else {
-      setShowDetails(true)
-    }
+    setSelectedAccessionId(event.currentTarget.id)
+    setShowDetails(!showDetails)
+    console.log('id from COntrols ' + typeof(selectedAccessionId))
+  }
 
-    console.log(showDetails)
-    setSelectedAccession(event.currentTarget.id)
-    console.log(event.currentTarget.id)
+  const handleReturnClick = () => {
+    setShowDetails(!showDetails)
+    console.log(selectedAccessionId)
   }
 
   const clearResults = () => {
@@ -48,9 +47,13 @@ function Controls() {
       <div className='App'>
         <header className='App-header'>
           {showIntro && <Tutorial handleDismissTutorial={handleDismissTutorial} />}
-          {!showIntro && !showDetails && <SearchFields handleSearch={handleSearch} clearResults={clearResults} />}
-          {!showIntro && !showDetails && <ResultsGrid results={results} handleDetailsClick={handleDetailsClick} />}
-          {!showIntro && showDetails && <Details accesssionId={selectedAccession} handleReturnClick={handleDetailsClick} />}
+          {!showIntro && (
+            <>
+              {!showDetails && <SearchFields handleSearch={handleSearch} clearResults={clearResults} />}
+              {!showDetails && <ResultsGrid results={results} handleDetailsClick={handleDetailsClick} />}
+              {showDetails && <Details accesssionId={selectedAccessionId} handleReturnClick={handleReturnClick} />}
+            </>
+          )}
         </header>
       </div>
     </>

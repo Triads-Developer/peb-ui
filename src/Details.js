@@ -18,7 +18,9 @@ function Details({ accessionId, handleReturnClick }) {
       .then((data) => setImages(data))
 
     setAccession(collection.find((element) => element.GDCC_ID == accessionId))
-  }, [accessionId, accession])
+    console.log('id ' + accessionId)
+    console.log(accession)
+  }, [accessionId])
 
   return (
     <Box sx={{ mx: 10 }}>
