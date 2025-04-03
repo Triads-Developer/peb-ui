@@ -5,6 +5,34 @@
   font-size: 16px;
 }
 
+.details-second-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-box {
+  display: flex;
+  flex-direction: row;
+}
+
+.info-box {
+  padding-left: 20px; 
+}
+
+.details-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.image-box {
+  padding-right: 10px;
+}
+
+.details-title {
+  font-weight: bold;
+}
+
 .MuiDataGrid-row {
   background-color: white;
   min-height: 125px;

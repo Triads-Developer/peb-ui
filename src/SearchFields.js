@@ -10,23 +10,26 @@ import Select from '@mui/material/Select'
 import * as Constants from './constants.js'
 import TextField from '@mui/material/TextField'
 
-function SearchFields({ handleSearch, clearResults }) {
-  const [name, setName] = React.useState('')
-  const [length, setLength] = React.useState()
-  const [nativeRegion, setNativeRegion] = React.useState([])
-  const [currentRegion, setCurrentRegion] = React.useState([])
-  const [shape, setShape] = React.useState([])
-  const [texture, setTexture] = React.useState([])
-  const [hideFilters, setHideFilters] = React.useState(false)
-
+function SearchFields({
+  handleSearch,
+  clearResults,
+  // Form state props
+  name,
+  setName,
+  length,
+  setLength,
+  nativeRegion,
+  setNativeRegion,
+  currentRegion,
+  setCurrentRegion,
+  shape,
+  setShape,
+  texture,
+  setTexture,
+  hideFilters,
+  setHideFilters
+}) {
   const resetFilters = () => {
-    setName('')
-    setLength('')
-    setNativeRegion([])
-    setCurrentRegion([])
-    setShape([])
-    setTexture([])
-    setHideFilters(false)
     clearResults()
   }
 
@@ -60,7 +63,6 @@ function SearchFields({ handleSearch, clearResults }) {
 
   const handleSubmit = function (event) {
     event.preventDefault()
-
     setHideFilters(!hideFilters)
     handleSearch(name)
   }
@@ -155,7 +157,6 @@ function SearchFields({ handleSearch, clearResults }) {
                       {Constants.shapeOptions.map((item) => (
                         <MenuItem value={item} key={item}>
                           {item}
-
                           <img
                             width={50}
                             height={50}
@@ -186,7 +187,6 @@ function SearchFields({ handleSearch, clearResults }) {
                       {Constants.textureOptions.map((item) => (
                         <MenuItem value={item} key={item}>
                           {item}
-
                           <img
                             loading='lazy'
                             width={50}
@@ -233,7 +233,22 @@ function SearchFields({ handleSearch, clearResults }) {
 
 SearchFields.propTypes = {
   handleSearch: PropTypes.func,
-  clearResults: PropTypes.func
+  clearResults: PropTypes.func,
+  // Form state prop types
+  name: PropTypes.string,
+  setName: PropTypes.func,
+  length: PropTypes.string,
+  setLength: PropTypes.func,
+  nativeRegion: PropTypes.array,
+  setNativeRegion: PropTypes.func,
+  currentRegion: PropTypes.array,
+  setCurrentRegion: PropTypes.func,
+  shape: PropTypes.array,
+  setShape: PropTypes.func,
+  texture: PropTypes.array,
+  setTexture: PropTypes.func,
+  hideFilters: PropTypes.bool,
+  setHideFilters: PropTypes.func
 }
 
 export default SearchFields

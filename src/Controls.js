@@ -11,8 +11,17 @@ function Controls() {
   const [showDetails, setShowDetails] = React.useState(false)
   const [selectedAccessionId, setSelectedAccessionId] = React.useState(0)
 
-  const handleSearch = function (name) {
-    let results = Search(name)
+  // Form state
+  const [name, setName] = React.useState('')
+  const [length, setLength] = React.useState('')
+  const [nativeRegion, setNativeRegion] = React.useState([])
+  const [currentRegion, setCurrentRegion] = React.useState([])
+  const [shape, setShape] = React.useState([])
+  const [texture, setTexture] = React.useState([])
+  const [hideFilters, setHideFilters] = React.useState(false)
+
+  const handleSearch = function (searchName) {
+    let results = Search(searchName)
     setResults(results)
   }
 
@@ -25,16 +34,21 @@ function Controls() {
   const handleDetailsClick = (event) => {
     setSelectedAccessionId(event.currentTarget.id)
     setShowDetails(!showDetails)
-    console.log('id from COntrols ' + typeof(selectedAccessionId))
   }
 
   const handleReturnClick = () => {
     setShowDetails(!showDetails)
-    console.log(selectedAccessionId)
   }
 
   const clearResults = () => {
     setResults([])
+    setName('')
+    setLength('')
+    setNativeRegion([])
+    setCurrentRegion([])
+    setShape([])
+    setTexture([])
+    setHideFilters(false)
   }
 
   //search for:
@@ -49,9 +63,29 @@ function Controls() {
           {showIntro && <Tutorial handleDismissTutorial={handleDismissTutorial} />}
           {!showIntro && (
             <>
-              {!showDetails && <SearchFields handleSearch={handleSearch} clearResults={clearResults} />}
+              {!showDetails && (
+                <SearchFields
+                  handleSearch={handleSearch}
+                  clearResults={clearResults}
+                  // Form state
+                  name={name}
+                  setName={setName}
+                  length={length}
+                  setLength={setLength}
+                  nativeRegion={nativeRegion}
+                  setNativeRegion={setNativeRegion}
+                  currentRegion={currentRegion}
+                  setCurrentRegion={setCurrentRegion}
+                  shape={shape}
+                  setShape={setShape}
+                  texture={texture}
+                  setTexture={setTexture}
+                  hideFilters={hideFilters}
+                  setHideFilters={setHideFilters}
+                />
+              )}
               {!showDetails && <ResultsGrid results={results} handleDetailsClick={handleDetailsClick} />}
-              {showDetails && <Details accesssionId={selectedAccessionId} handleReturnClick={handleReturnClick} />}
+              {showDetails && <Details accessionId={selectedAccessionId} handleReturnClick={handleReturnClick} />}
             </>
           )}
         </header>

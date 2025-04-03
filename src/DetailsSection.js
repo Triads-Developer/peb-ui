@@ -5,9 +5,9 @@ import './App.css'
 
 function DetailsSection({ title, details, children }) {
   return (
-    <Box>
-      <h1>{title}</h1>
-      <p>{details}</p>
+    <Box className='detail-section'>
+      <Box className='details-title'>{title}:</Box>
+      <Box>{details}</Box>
       <p>{children}</p>
     </Box>
   )
