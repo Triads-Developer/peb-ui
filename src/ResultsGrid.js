@@ -6,6 +6,10 @@ import PropTypes from 'prop-types'
 import Zoom from 'react-medium-image-zoom'
 import './Zoom.css'
 
+// API configuration
+const API_BASE_URL =
+  process.env.NODE_ENV === 'production' ? 'http://paleoethnobotany.research-stage.artsci.wustl.edu:3001' : 'http://localhost:3001'
+
 function ResultsGrid({ results, handleDetailsClick }) {
   const columns = [
     { field: 'GDCC_ID', headerName: 'Accession Number', width: 150 },
@@ -20,8 +24,15 @@ function ResultsGrid({ results, handleDetailsClick }) {
       width: 200,
       renderCell: (params) => (
         <Zoom>
-          {' '}
-          <img className='img-icon' src={'images/icons/' + params.row.GDCC_ID} />{' '}
+          <img
+            className='img-icon'
+            src={`${API_BASE_URL}/images/icons/${params.row.GDCC_ID}`}
+            alt={`${params.row.Genus} ${params.row.Species}`}
+            onError={(e) => {
+              e.target.onerror = null
+              e.target.src = `${API_BASE_URL}/images/icons/default`
+            }}
+          />
         </Zoom>
       )
     },
@@ -31,8 +42,7 @@ function ResultsGrid({ results, handleDetailsClick }) {
       width: 200,
       renderCell: (params) => (
         <button id={params.row.GDCC_ID} onClick={handleDetailsClick}>
-          {' '}
-          Details{' '}
+          Details
         </button>
       )
     }
