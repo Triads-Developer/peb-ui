@@ -1,5 +1,4 @@
 import Fuse from 'fuse.js'
-import data from './data/collection.json'
 import { usePapaParse } from 'react-papaparse'
 
 export default function Search(params, setResults) {
@@ -21,7 +20,7 @@ export default function Search(params, setResults) {
 
       if (!params) {
         setResults(
-          data.map((item) => ({
+          results.data.flat().map((item) => ({
             ...item,
             image: '/image',
             id: crypto.randomUUID()
