@@ -3,7 +3,7 @@ import Zoom from 'react-medium-image-zoom'
 import Box from '@mui/material/Box'
 import DetailsSection from './DetailsSection.js'
 import PropTypes from 'prop-types'
-import collection from './data/collection.json'
+import { usePapaParse } from 'react-papaparse'
 
 import './App.css'
 import './Zoom.css'
@@ -13,6 +13,7 @@ const API_BASE_URL =
   process.env.NODE_ENV === 'production' ? 'http://paleoethnobotany.research-stage.artsci.wustl.edu:3001' : 'http://localhost:3001'
 
 function Details({ accessionId, handleReturnClick }) {
+  const { readRemoteFile } = usePapaParse()
   const [images, setImages] = useState([])
   const [accession, setAccession] = useState({})
   const [loading, setLoading] = useState(true)
@@ -22,9 +23,17 @@ function Details({ accessionId, handleReturnClick }) {
     setLoading(true)
     setError(null)
 
-    // Find accession details
-    const accessionData = collection.find((element) => element.GDCC_ID === accessionId)
-    setAccession(accessionData || {})
+    readRemoteFile(`${API_BASE_URL}/data/`, {
+      header: true,
+      skipEmptyLines: true,
+      complete: (results) => {
+        setAccession(results.data.flat().find((element) => element['GDCC_ID'] === accessionId) || {})
+      },
+      error: (err) => {
+        console.error('Error fetching data:', err)
+        setError('Failed to load data')
+      }
+    })
 
     // Fetch images
     fetch(`${API_BASE_URL}/images/${accessionId}`)
