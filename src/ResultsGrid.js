@@ -59,7 +59,7 @@ function ResultsGrid({ results, handleDetailsClick }) {
   return (
     <>
       <Box sx={{ width: '100%' }}>
-        {results.length > 0 ? (
+        {results && results.length > 0 ? (
           <>
             <DataGridPro
               sx={{ width: '100%' }}

@@ -20,9 +20,8 @@ function Controls() {
   const [texture, setTexture] = React.useState([])
   const [hideFilters, setHideFilters] = React.useState(false)
 
-  const handleSearch = function (searchName) {
-    let results = Search(searchName)
-    setResults(results)
+  const handleSearch = async function (searchName) {
+    Search(searchName, setResults)
   }
 
   const handleDismissTutorial = (event) => {
